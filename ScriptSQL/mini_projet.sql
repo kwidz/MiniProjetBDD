@@ -117,7 +117,7 @@ CREATE TABLE `Iut` (
 
 LOCK TABLES `Iut` WRITE;
 /*!40000 ALTER TABLE `Iut` DISABLE KEYS */;
-INSERT INTO `Iut` VALUES (1,' IUTBM',' Rue engel gros',1500),(2,' IUTBesanÃ§on',' Rue de Belfort',3500),(3,' IUTParis',' Faubourg des ancÃ¨tres',5500),(4,' IUTC',' Rue du Mont',1500),(5,' IUTPoitier',' Sur les vignes',500);
+INSERT INTO `Iut` VALUES (1,' IUTBM','Belfort',1500),(2,' IUTBesanÃ§on','Besancon',3500),(3,' IUTParis','Paris',5500),(4,' IUTC','Compegne',1500),(5,' IUTPoitier','Poitier',500);
 /*!40000 ALTER TABLE `Iut` ENABLE KEYS */;
 UNLOCK TABLES;
 
