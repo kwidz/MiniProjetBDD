@@ -62,7 +62,7 @@ CREATE TABLE `Epreuve` (
 
 LOCK TABLES `Epreuve` WRITE;
 /*!40000 ALTER TABLE `Epreuve` DISABLE KEYS */;
-INSERT INTO `Epreuve` VALUES (1,'Maths'),(2,'Prog web'),(3,'Test'),(4,'Algo'),(5,'Prog Objet'),(6,'Android');
+INSERT INTO `Epreuve` VALUES (1,'Athletisme'),(2,'Gymnastique'),(3,'Natation'),(4,'Ski'),(5,'Football'),(6,'Basket');
 /*!40000 ALTER TABLE `Epreuve` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `Manifestation` (
 
 LOCK TABLES `Manifestation` WRITE;
 /*!40000 ALTER TABLE `Manifestation` DISABLE KEYS */;
-INSERT INTO `Manifestation` VALUES (1,' Gre_hack','2013-08-08',5),(2,' nuit des Iut','2014-01-08',4),(3,' 24h des Iut','2014-02-01',3),(4,' jeux mobiles','2014-03-03',2),(5,' test','2014-04-05',1);
+INSERT INTO `Manifestation` VALUES (1,'SportALiut','2013-08-08',5),(2,'nuit des Iut','2014-01-08',4),(3,'Jeux olympiques des iuts','2014-02-01',3),(4,'Concours national','2014-03-03',2),(5,'Finale departementale','2014-04-05',1);
 /*!40000 ALTER TABLE `Manifestation` ENABLE KEYS */;
 UNLOCK TABLES;
 
