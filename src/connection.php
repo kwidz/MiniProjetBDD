@@ -10,7 +10,7 @@
     <?php
     $serveur="localhost";
     $user="root";
-    $mdp="404Notfound505";
+    $mdp="mdp";
     $DataBase="mini_projet"; 
     $connection=mysql_connect($serveur, $user, $mdp);
     mysql_select_db($DataBase, $connection);
