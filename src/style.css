@@ -1,0 +1,40 @@
+section{
+	text-align: center;
+	background-color:;
+	width:20%;
+	margin-left: 40%;
+	
+}
+header{
+	text-align: center;
+}
+a{
+	display: inline-block;
+	background-color: black;
+	color: lightgrey;
+	float: top;
+	margin-top: 10px;
+	width: 200px;
+	text-align: center; 
+	text-decoration:none;
+
+}
+a:hover{
+	color:orange;
+}
+table
+{
+	margin:auto;
+	padding: auto;
+	border: 3px solid black;
+    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+}
+td
+{	
+	text-align: center;
+    border: 1px solid black;
+}
+th
+{
+    border: 1px solid black;
+}

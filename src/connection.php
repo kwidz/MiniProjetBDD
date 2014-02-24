@@ -1,5 +1,3 @@
-   <!-- ce fichier est juste un morceau de code que je voulais éviter de réécrire au 
-   debut de chaque fichier je l'appelle avec require_once sur chaque page  -->
     <head>
     	<meta charset="utf-8" />
 
@@ -10,9 +8,12 @@
     <?php
     $serveur="localhost";
     $user="root";
-    $mdp="mdp";
-    $DataBase="mini_projet"; 
-    $connection=mysql_connect($serveur, $user, $mdp);
-    mysql_select_db($DataBase, $connection);
+    $pass="mdp";
+    $base="mini_projet"; 
+    $mysqli = new mysqli($serveur, $user, $pass, $base);
+    if ($mysqli->connect_error) {
+        die('Erreur de connexion ('.$mysqli->connect_errno.')'. $mysqli->connect_error);
+    }
+
     ?>
     
