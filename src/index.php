@@ -1,3 +1,4 @@
+<!-- Acceuil du site web ! -->
 <?php require_once("connection.php"); ?>
 <html>
 <body>

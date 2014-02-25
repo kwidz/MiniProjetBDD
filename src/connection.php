@@ -1,3 +1,4 @@
+    <!-- ceci est un fichier de configuration, veuillez entrer vos donnés personneles dans ce fichier -->
     <head>
     	<meta charset="utf-8" />
 

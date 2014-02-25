@@ -1,3 +1,6 @@
+<!-- cette page est composé en premiere partie d'une 
+	structure switch qui permet d'utiliser une fonction
+	pour chaque requette a afficher -->
 <section>
 	<?php
 
@@ -46,28 +49,36 @@
 		case 'totoParticipe':
 		totoParticipe();
 		break;
-
+		// si la requette n'existe pas alors on affiche un message d'erreur !
 		default:
 		echo "erreur !!";
 		break;
 	}
 	?>
+	<!-- lien de retour a la page précédente qui sera ainsi affiché après chaque fonctions -->
 	<a href='Afficher.php'>Retour</a>
 </section>
 <?php
+// chaque fonction a la même architecture donc je n'en commenterai une seule 
 function ListeEpreuve(){
+
 	require_once("connection.php");
+	// requette Sql
 	$sql = 'SELECT intitule FROM Epreuve';
+	// execution requette
 	$res = $mysqli->query($sql);
 	?><table>
+	<!-- Intitulé du tableau Structuré -->
 	<caption>Liste des Epreuves</caption>
+	<!-- entête d'un tableau structuré -->
 	<thead>
 		<tr>
 			<th>Intitulé</th>
 		</tr>
 	</thead>
-	
+	<!-- fin de l'entête -->
 	<?php
+	// affichage de la requette dans un tableau
 	while (NULL !== ($row = $res->fetch_array())) {
 		echo '<tr><td>'.$row['intitule'].'</td></tr>';
 	}
