@@ -22,6 +22,14 @@ a{
 a:hover{
 	color:orange;
 }
+#modifier{
+	background-color: white;
+	color:blue;
+	text-decoration: underline;
+}
+#modifier:hover{
+	color:black;
+}
 table
 {
 	margin:auto;
