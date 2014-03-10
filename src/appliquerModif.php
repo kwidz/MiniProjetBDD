@@ -12,6 +12,9 @@ switch ($_GET['table']) {
 		Etudiant();
 		break;
 	// si la variable d'url n'est pas une table alors on affiche un message d'erreur
+	case 'Iut':
+		Iut();
+		break;
 	default:
 		echo "<h4>erreur champs !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -42,6 +45,20 @@ else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
 }
 }
+
+function Iut(){
+	require_once('connection.php');
+	if(!($_POST['nomIut']=='')&&!($_POST['adresse']=='')&&!($_POST['nbEtudiants']=='')){
+	$sql="UPDATE Iut SET nomIut='".$_POST['nomIut']."',adresse='".$_POST['adresse']."', nbEtudiants=".$_POST['nbEtudiants']." WHERE noEtudiant='".$_GET['id']."'";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";
+}
+}
+
 ?>
 </section>
 
