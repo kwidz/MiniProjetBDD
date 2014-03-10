@@ -1,7 +1,7 @@
 pour exporter : 
 myqsqldump -h serveur -u LOGIN -p --opt base > base.sql
 
-pour importer le code :
+pour importer le code (C4EST CELUI LA !! ) :
 mysql -u root -p base < script.sql
 
 pour importer un fichier txt dans la table

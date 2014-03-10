@@ -2,10 +2,14 @@
 Il y a une fonction par Table -->
 <section>
 <?php
-// On utilise une fonction en fonction de la table, la table est choisie par une variable d'url (GET)
+echo "test";// On utilise une fonction en fonction de la table, la table est choisie par une variable d'url (GET)
 switch ($_GET['table']) {
 	case 'Epreuve':
+		echo "test";
 		Epreuve();
+		break;
+	case 'Etudiant':
+		Etudiant();
 		break;
 	// si la variable d'url n'est pas une table alors on affiche un message d'erreur
 	default:
@@ -24,5 +28,20 @@ function Epreuve(){
 else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 }
-}?>
+}
+
+function Etudiant(){
+	require_once('connection.php');
+	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')){
+	$sql="UPDATE Etudiant SET nom='".$_POST['nom']."',age='".$_POST['age']."', sexe='".$_POST['sexe']."' WHERE noEtudiant='".$_GET['id']."'";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
+}
+}
+?>
 </section>
+
