@@ -340,9 +340,93 @@
 <?php
 }
 
+/* ATTENTION Fonction Participe ne fait rien a part etre afficher car elle est en cours de creation */
 function Participe(){
-			
+			require_once("connection.php");
+			// $_GET['id'] est l'identifiant du tuple, $_GET['mode']est : supprimer, modifier
+			if (isset($_GET['id'])&&isset($_GET['mode'])){
+				// partie suppression
+				if ($_GET['mode']=='supprimer') {
+					
+					// on exectute dirrectement la requette dans cette page 
+					$sql="DELETE from Etudiant where noEtudiant=".$_GET['id']."";
+					$res=$mysqli->query($sql);
+					// si la requette retourne une erreur c'est que le champs n'est pas supprimable (Contrainte de Clé étrangère)
+					if (!($res)){
+						?><h4>erreur le champ est sous contrainte !</h4><?php
+					}
+					// Partie Modification
+				}elseif ($_GET['mode']=='modifier') {
+					// On prévient l'utilisateur que nous somme en mode de modification
+					echo("<h4>mode de modification</h4>");
+					// on recupere l'Intitule du tuble pour faire un affichage interactif
+					$sql="SELECT nom, age, sexe from Etudiant where noEtudiant=".$_GET['id']."";
+					$res=$mysqli->query($sql);
+					$row = $res->fetch_array();
+					// On affiche un formulaire de modification sur la même page 
+					// ce formulaire renvoie en POST les nouvelles valeurs du tuple a la page appliquerModifs.php
+					// avec comme variables d'url la table et l'id du tuple a modifier 
+					echo('<form method="post" action="appliquerModif.php?table=Etudiant&id='.$_GET['id'].'">');?>
+					Entrez un nouveau nom pour <?php echo($row['nom'])?> : <input type="text" name="nom">
+					Entrez un nouvel age pour <?php echo($row['age'])?> : <input type="text" name="age">
+					Entrez un nouvel sexe pour <?php echo($row['sexe'])?> : <input type="text" name="sexe">
+					<?php
+					$sql2="SELECT noIut, nomIut from Iut ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					Choisissez un nouvel iut pour <?php echo($row['nom'])?> : 
+					<select name="Iut">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["noIut"])?>"><?php echo($row2["nomIut"])?></option><?php 
+						} ?>
+
+					</select><br/>
+					<input type='submit'>
+					</form><?php
+
+				}
+				else{
+					echo ("<h4>erreur mode</h4>");
+				}
+				
+			}
+			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
+			$sql="SELECT Participe.resultat, Manifestation.nomMan, Epreuve.intitule, Etudiant.nom from Participe, Etudiant, Manifestation, Epreuve where Participe.numMan = Manifestation.numMan and Participe.noEtudiant = Etudiant.noEtudiant and Participe.numEpreuve = Epreuve.numEpreuve";
+			$res=$mysqli->query($sql);
+			?><table>
+			<caption>Liste de Participe</caption>
+			<thead>
+				<tr>
+					<td>nom Etudiant</td><td>Nom Manifestation</td><td>Intitule Epreuve</td><td>Resultat</td>
+				</tr>
+			</thead>
+
+			<?php
+			while (NULL != ($row = $res->fetch_array())) {
+				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['nomMan'].'</td><td>'.$row['intitule'].'</td><td>'.$row['resultat'].'</td><td><a id="modifier" href="modifier.php?table=Participe&mode=supprimer&id='.$row['nomMan'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Participe&mode=modifier&id='.$row['nomMan'].'">Modifier</td></tr>';
+			}
+			echo('<form method="post" action="ajouter.php?table=Etudiant"><tr>');?>
+			<td><input type="text" name="nom" value="nom" onclick="this.value=''"></td>
+			<td><input type="text" name="nomMan" value="nomMan" onclick="this.value=''"></td>
+			<td><input type="text" name="intitule" value="intitule" onclick="this.value=''"></td>
+			<td><input type="text" name="resultat" value="resultat" onclick="this.value=''"></td>
+			<td><input type='submit' value="ajouter une participation"></td>
+		</form>
+	</table>
+</br>
+<a href="Maj.php">Retour</a>
+<?php
 }
+		/* select Participe.Resultat, Manifestation.nomMan, Epreuve.intitule, Etudiant.nom 
+		from Participe, Etudiant, Manifestation, Epreuve 
+		where 
+		Participe.numMan = Manifestation.numMan AND
+		Etudiant.noEtudiant = Participe.noEtudiant AND
+		Epreuve.numEpreuve = Participe.Epreuve
+		*/
+
 ?>
 </section>
 </body>
