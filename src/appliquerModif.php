@@ -17,6 +17,9 @@ switch ($_GET['table']) {
 	case 'Manifestation':
 		Manifestation();
 		break;
+	case 'Participe':
+		Participe();
+		break;
 	default:
 		echo "<h4>erreur champs !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -71,6 +74,19 @@ function Manifestation(){
 }
 else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Manifestation>Retour</a>";
+}
+}
+
+function Participe(){
+	require_once('connection.php');
+	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')&&!($_POST['Iut']=='')){
+	$sql="UPDATE Etudiant SET nom='".$_POST['nom']."',age='".$_POST['age']."', sexe='".$_POST['sexe']."' , noIut='".$_POST['Iut']."' WHERE CONCAT(numMan, numEpreuve, noEtudiant) ='".$_GET['id']."'";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Participe>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Participe>Retour</a>";
 }
 }
 
