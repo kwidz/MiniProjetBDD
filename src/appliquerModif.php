@@ -70,7 +70,7 @@ function Manifestation(){
 	$sql="UPDATE Manifestation SET nomMan='".$_POST['nomMan']."',dateMan='".$_POST['dateMan']."', noIut='".$_POST['Iut']."' WHERE numMan='".$_GET['id']."'";
 	
 	$res=$mysqli->query($sql);
-	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Manifestation>Retour</a>";
 }
 else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Manifestation>Retour</a>";
