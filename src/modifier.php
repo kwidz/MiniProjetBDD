@@ -148,7 +148,7 @@
 				
 			}
 			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
-			$sql="SELECT Etudiant.*, Iut.nomIut from Etudiant, Iut where Iut.noIut = Etudiant.noEtudiant";
+			$sql="Select e.noEtudiant, e.nom, e.age, e.sexe, i.nomIut  From Iut i, Etudiant e where i.noIut=e.noIut;";
 			$res=$mysqli->query($sql);
 			?><table>
 			<caption>Liste des Etudiants</caption>
