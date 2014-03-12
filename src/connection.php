@@ -9,8 +9,8 @@
     <?php
     $serveur="localhost";
     $user="root";
-    $pass="404Notfound505";
-    $base="mini_projet"; 
+    $pass="azerty";
+    $base="miniprobdd"; 
     $mysqli = new mysqli($serveur, $user, $pass, $base);
     if ($mysqli->connect_error) {
         die('Erreur de connexion ('.$mysqli->connect_errno.')'. $mysqli->connect_error);

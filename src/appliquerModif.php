@@ -15,6 +15,9 @@ switch ($_GET['table']) {
 	case 'Iut':
 		Iut();
 		break;
+	case 'Manifestation':
+		Manifestation();
+		break;
 	default:
 		echo "<h4>erreur champs !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -56,6 +59,19 @@ function Iut(){
 }
 else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";
+}
+}
+
+function Manifestation(){
+	require_once('connection.php');
+	if(!($_POST['nomMan']=='')&&!($_POST['dateMan']=='')){
+	$sql="UPDATE Manifestation SET nomMan='".$_POST['nomMan']."',dateMan='".$_POST['dateMan']."', noIut='".$_POST['Iut']."' WHERE numMan='".$_GET['id']."'";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
 }
 }
 

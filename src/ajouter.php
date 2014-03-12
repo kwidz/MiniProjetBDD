@@ -15,6 +15,9 @@ switch ($_GET['table']) {
 	case 'Iut':
 		Iut();
 		break;
+	case 'Manifestation':
+		Manifestation();
+		break;
 	default:
 		echo "<h4>aucune table selectionnée ou table erronée !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -36,7 +39,7 @@ else {
 function Etudiant(){
 	require_once('connection.php');
 	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')){
-	$sql="INSERT into Etudiant(noEtudiant, nom, age, sexe, noIUT) values('','".$_POST['nom']."','".$_POST['age']."','".$_POST['sexe']."',1)";
+	$sql="INSERT into Etudiant(noEtudiant, nom, age, sexe, noIut) values('','".$_POST['nom']."','".$_POST['age']."','".$_POST['sexe']."',1)";
 	
 	$res=$mysqli->query($sql);
 	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
@@ -58,5 +61,19 @@ else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";
 }
 }
+
+function Manifestation(){
+	require_once('connection.php');
+	if(!($_POST['nomMan']=='')&&!($_POST['dateMan']=='')&&!($_POST['Iut']=='')){
+	$sql="INSERT into Manifestation(numMan, nomMan, dateMan, noIut) values('','".$_POST['nomMan']."','".$_POST['dateMan']."','".$_POST['Iut']."')";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Manifestation>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Manifestation>Retour</a>";
+}
+}
+
 ?>
 </section>

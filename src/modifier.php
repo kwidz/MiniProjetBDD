@@ -226,7 +226,93 @@
 <?php
 }
 //fin de la fonction IUT
+		function Manifestation(){
+			require_once("connection.php");
+			// $_GET['id'] est l'identifiant du tuple, $_GET['mode']est : supprimer, modifier
+			if (isset($_GET['id'])&&isset($_GET['mode'])){
+				// partie suppression
+				if ($_GET['mode']=='supprimer') {
+					
+					// on exectute dirrectement la requette dans cette page 
+					$sql="DELETE from Manifestation where numMan=".$_GET['id']."";
+					$res=$mysqli->query($sql);
+					// si la requette retourne une erreur c'est que le champs n'est pas supprimable (Contrainte de Clé étrangère)
+					if (!($res)){
+						?><h4>erreur le champ est sous contrainte !</h4><?php
+					}
+					// Partie Modification
+				}elseif ($_GET['mode']=='modifier') {
+					// On prévient l'utilisateur que nous somme en mode de modification
+					echo("<h4>mode de modification</h4>");
+					// on recupere l'Intitule du tuble pour faire un affichage interactif
+					$sql="SELECT nomMan, dateMan from Manifestation where numMan=".$_GET['id']."";
+					$res=$mysqli->query($sql);
+					$row = $res->fetch_array();
+					// On affiche un formulaire de modification sur la même page 
+					// ce formulaire renvoie en POST les nouvelles valeurs du tuple a la page appliquerModifs.php
+					// avec comme variables d'url la table et l'id du tuple a modifier 
+					echo('<form method="post" action="appliquerModif.php?table=Manifestation&id='.$_GET['id'].'">');?>
+					Entrez un nouveau nom pour <?php echo($row['nomMan'])?> : <input type="text" name="nomMan">
+					Entrez une nouvelle date pour <?php echo($row['nomMan'])?> : <input type="text" name="dateMan">
+					<?php
+					$sql2="SELECT noIut, nomIut from Iut ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					Choisissez un nouvel iut pour <?php echo($row['nomMan'])?> : 
+					<select name="Iut">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["noIut"])?>"><?php echo($row2["nomIut"])?></option><?php 
+						} ?>
 
+					</select><br/>
+					<input type='submit'>
+					</form><?php
+
+				}
+				else{
+					echo ("<h4>erreur mode</h4>");
+				}
+				
+			}
+			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
+			$sql="SELECT * from Manifestation";
+			$res=$mysqli->query($sql);
+			?><table>
+			<caption>Liste des Etudiants</caption>
+			<thead>
+				<tr>
+					<td>nomMan</td><td>dateMan</td><td>NomIut</td>
+				</tr>
+			</thead>
+
+			<?php
+			while (NULL != ($row = $res->fetch_array())) {
+				echo '<tr><td>'.$row['nomMan'].'</td><td>'.$row['dateMan'].'</td><td></td><td><a id="modifier" href="modifier.php?table=Manifestation&mode=supprimer&id='.$row['numMan'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Manifestation&mode=modifier&id='.$row['numMan'].'">Modifier</td></tr>';
+			}
+			echo('<form method="post" action="ajouter.php?table=Manifestation"><tr>');?>
+			<td><input type="text" name="nomMan" value="nomMan" onclick="this.value=''"></td>
+			<td><input type="text" name="dateMan" value="dateMan" onclick="this.value=''"></td>
+			<?php
+					$sql2="SELECT noIut, nomIut from Iut ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					<td><select name="Iut">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["noIut"])?>"><?php echo($row2["nomIut"])?></option><?php 
+						} ?>
+
+					</select></td>
+			<td><input type='submit' value="ajouter Manifestation"></td>
+		</form>
+	</table>
+</br>
+<a href="Maj.php">Retour</a>
+<?php
+}
 ?>
 </section>
 </body>
