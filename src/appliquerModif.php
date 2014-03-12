@@ -49,7 +49,7 @@ else {
 function Iut(){
 	require_once('connection.php');
 	if(!($_POST['nomIut']=='')&&!($_POST['adresse']=='')&&!($_POST['nbEtudiants']=='')){
-	$sql="UPDATE Iut SET nomIut='".$_POST['nomIut']."',adresse='".$_POST['adresse']."', nbEtudiants=".$_POST['nbEtudiants']." WHERE noEtudiant='".$_GET['id']."'";
+	$sql="UPDATE Iut SET nomIut='".$_POST['nomIut']."',adresse='".$_POST['adresse']."', nbEtudiants='".$_POST['nbEtudiants']."' WHERE noEtudiant='".$_GET['id']."'";
 	
 	$res=$mysqli->query($sql);
 	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";

@@ -9,7 +9,12 @@ switch ($_GET['table']) {
 	case 'Epreuve':
 		Epreuve();
 		break;
-	
+	case 'Etudiant':
+		Etudiant();
+		break;
+	case 'Iut':
+		Iut();
+		break;
 	default:
 		echo "<h4>aucune table selectionnée ou table erronée !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -26,5 +31,32 @@ function Epreuve(){
 else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 }
-}?>
+}
+
+function Etudiant(){
+	require_once('connection.php');
+	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')){
+	$sql="INSERT into Etudiant(noEtudiant, nom, age, sexe, noIUT) values('','".$_POST['nom']."','".$_POST['age']."','".$_POST['sexe']."',1)";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
+}
+}
+
+function Iut(){
+	require_once('connection.php');
+	if(!($_POST['nomIut']=='')&&!($_POST['adresse']=='')&&!($_POST['nbEtudiants']=='')){
+	$sql="INSERT into Iut(noIut, nomIut, adresse, nbEtudiants) values('','".$_POST['nomIut']."','".$_POST['adresse']."','".$_POST['nbEtudiants']."')";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Iut>Retour</a>";
+}
+}
+?>
 </section>
