@@ -148,7 +148,7 @@
 				
 			}
 			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
-			$sql="SELECT * from Etudiant";
+			$sql="SELECT Etudiant.*, Iut.nomIut from Etudiant, Iut where Iut.noIut = Etudiant.noEtudiant";
 			$res=$mysqli->query($sql);
 			?><table>
 			<caption>Liste des Etudiants</caption>
@@ -160,7 +160,7 @@
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
-				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['age'].'</td><td>'.$row['sexe'].'</td><td></td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=supprimer&id='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=modifier&id='.$row['noEtudiant'].'">Modifier</td></tr>';
+				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['age'].'</td><td>'.$row['sexe'].'</td><td>'.$row['nomIut'].'</td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=supprimer&id='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=modifier&id='.$row['noEtudiant'].'">Modifier</td></tr>';
 			}
 			echo('<form method="post" action="ajouter.php?table=Etudiant"><tr>');?>
 			<td><input type="text" name="nom" value="nom" onclick="this.value=''"></td>
@@ -303,7 +303,7 @@
 				
 			}
 			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
-			$sql="SELECT * from Manifestation";
+			$sql="SELECT Manifestation.*, Iut.nomIut from Manifestation, Iut where Iut.noIut = Manifestation.noIut";
 			$res=$mysqli->query($sql);
 			?><table>
 			<caption>Liste des Etudiants</caption>
@@ -315,7 +315,7 @@
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
-				echo '<tr><td>'.$row['nomMan'].'</td><td>'.$row['dateMan'].'</td><td></td><td><a id="modifier" href="modifier.php?table=Manifestation&mode=supprimer&id='.$row['numMan'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Manifestation&mode=modifier&id='.$row['numMan'].'">Modifier</td></tr>';
+				echo '<tr><td>'.$row['nomMan'].'</td><td>'.$row['dateMan'].'</td><td>'.$row['nomIut'].'</td><td><a id="modifier" href="modifier.php?table=Manifestation&mode=supprimer&id='.$row['numMan'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Manifestation&mode=modifier&id='.$row['numMan'].'">Modifier</td></tr>';
 			}
 			echo('<form method="post" action="ajouter.php?table=Manifestation"><tr>');?>
 			<td><input type="text" name="nomMan" value="nomMan" onclick="this.value=''"></td>
