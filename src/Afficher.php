@@ -7,7 +7,7 @@
 	<header>
 		<h3>Vous pouvez ici consulter des information sur les olympiades.<h3>
 	</header>
-	<section>
+	<section id="td">
 		<!-- Utilisation d'une variable d'URL pour acceder a la fonction d'affichage souaitée  -->
 	<a href='requettes.php?var=ListeEpreuve'>Liste des Epreuves</a>
 	<a href='requettes.php?var=ListeEtu'>Liste des Étudiants</a>

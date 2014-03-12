@@ -81,6 +81,11 @@
 					<th>Intitulé</th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<th>Intitulé</th>
+				</tr>
+			</tfoot>
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
@@ -148,6 +153,7 @@
 				
 			}
 			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
+			?><a href="Maj.php">Retour</a><?php
 			$sql="Select e.noEtudiant, e.nom, e.age, e.sexe, i.nomIut  From Iut i, Etudiant e where i.noIut=e.noIut;";
 			$res=$mysqli->query($sql);
 			?><table>
@@ -157,6 +163,11 @@
 					<td>nom</td><td>age</td><td>sexe</td><td>Iut</td>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td>nom</td><td>age</td><td>sexe</td><td>Iut</td>
+				</tr>
+			</tfoot>
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
@@ -235,6 +246,11 @@
 					<td>nomIut</td><td>adresse</td><td>nbEtudiants</td>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td>nomIut</td><td>adresse</td><td>nbEtudiants</td>
+				</tr>
+			</tfoot>
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
@@ -312,6 +328,11 @@
 					<td>nomMan</td><td>dateMan</td><td>NomIut</td>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td>nomMan</td><td>dateMan</td><td>NomIut</td>
+				</tr>
+			</tfoot>
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
@@ -345,6 +366,7 @@ function Participe(){
 			require_once("connection.php");
 			
 			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
+			?><a href="Maj.php">Retour</a><?php
 			$sql="SELECT Participe.*, Manifestation.nomMan, Epreuve.intitule, Etudiant.nom from Participe, Etudiant, Manifestation, Epreuve where Participe.numMan = Manifestation.numMan and Participe.noEtudiant = Etudiant.noEtudiant and Participe.numEpreuve = Epreuve.numEpreuve";
 			$res=$mysqli->query($sql);
 			?><table>
@@ -354,6 +376,11 @@ function Participe(){
 					<td>nom Etudiant</td><td>Nom Manifestation</td><td>Intitule Epreuve</td><td>Resultat</td>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td>nom Etudiant</td><td>Nom Manifestation</td><td>Intitule Epreuve</td><td>Resultat</td>
+				</tr>
+			</tfoot>
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
