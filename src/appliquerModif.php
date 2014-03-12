@@ -38,8 +38,8 @@ else {
 
 function Etudiant(){
 	require_once('connection.php');
-	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')){
-	$sql="UPDATE Etudiant SET nom='".$_POST['nom']."',age='".$_POST['age']."', sexe='".$_POST['sexe']."' WHERE noEtudiant='".$_GET['id']."'";
+	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')&&!($_POST['Iut']=='')){
+	$sql="UPDATE Etudiant SET nom='".$_POST['nom']."',age='".$_POST['age']."', sexe='".$_POST['sexe']."' , noIut='".$_POST['Iut']."' WHERE noEtudiant='".$_GET['id']."'";
 	
 	$res=$mysqli->query($sql);
 	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
@@ -64,7 +64,7 @@ else {
 
 function Manifestation(){
 	require_once('connection.php');
-	if(!($_POST['nomMan']=='')&&!($_POST['dateMan']=='')){
+	if(!($_POST['nomMan']=='')&&!($_POST['dateMan']=='')&&!($_POST['Iut']=='')){
 	$sql="UPDATE Manifestation SET nomMan='".$_POST['nomMan']."',dateMan='".$_POST['dateMan']."', noIut='".$_POST['Iut']."' WHERE numMan='".$_GET['id']."'";
 	
 	$res=$mysqli->query($sql);

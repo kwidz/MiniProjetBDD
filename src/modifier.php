@@ -125,6 +125,19 @@
 					Entrez un nouveau nom pour <?php echo($row['nom'])?> : <input type="text" name="nom">
 					Entrez un nouvel age pour <?php echo($row['age'])?> : <input type="text" name="age">
 					Entrez un nouvel sexe pour <?php echo($row['sexe'])?> : <input type="text" name="sexe">
+					<?php
+					$sql2="SELECT noIut, nomIut from Iut ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					Choisissez un nouvel iut pour <?php echo($row['nom'])?> : 
+					<select name="Iut">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["noIut"])?>"><?php echo($row2["nomIut"])?></option><?php 
+						} ?>
+
+					</select><br/>
 					<input type='submit'>
 					</form><?php
 
@@ -141,18 +154,31 @@
 			<caption>Liste des Etudiants</caption>
 			<thead>
 				<tr>
-					<td>nom</td><td>age</td><td>sexe</td>
+					<td>nom</td><td>age</td><td>sexe</td><td>Iut</td>
 				</tr>
 			</thead>
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
-				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['age'].'</td><td>'.$row['sexe'].'</td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=supprimer&id='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=modifier&id='.$row['noEtudiant'].'">Modifier</td></tr>';
+				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['age'].'</td><td>'.$row['sexe'].'</td><td></td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=supprimer&id='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Etudiant&mode=modifier&id='.$row['noEtudiant'].'">Modifier</td></tr>';
 			}
 			echo('<form method="post" action="ajouter.php?table=Etudiant"><tr>');?>
 			<td><input type="text" name="nom" value="nom" onclick="this.value=''"></td>
 			<td><input type="text" name="age" value="age" onclick="this.value=''"></td>
 			<td><input type="text" name="sexe" value="sexe" onclick="this.value=''"></td>
+			<?php
+					$sql2="SELECT noIut, nomIut from Iut ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					 
+					<td><select name="Iut">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["noIut"])?>"><?php echo($row2["nomIut"])?></option><?php 
+						} ?>
+
+					</select></td>
 			<td><input type='submit' value="ajouter Etudiant"></td>
 		</form>
 	</table>
@@ -312,6 +338,10 @@
 </br>
 <a href="Maj.php">Retour</a>
 <?php
+}
+
+function Participe(){
+			
 }
 ?>
 </section>

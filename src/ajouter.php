@@ -38,8 +38,8 @@ else {
 
 function Etudiant(){
 	require_once('connection.php');
-	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')){
-	$sql="INSERT into Etudiant(noEtudiant, nom, age, sexe, noIut) values('','".$_POST['nom']."','".$_POST['age']."','".$_POST['sexe']."',1)";
+	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')&&!($_POST['Iut']=='')){
+	$sql="INSERT into Etudiant(noEtudiant, nom, age, sexe, noIut) values('','".$_POST['nom']."','".$_POST['age']."','".$_POST['sexe']."','".$_POST['Iut']."')";
 	
 	$res=$mysqli->query($sql);
 	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Etudiant>Retour</a>";
