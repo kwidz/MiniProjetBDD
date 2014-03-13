@@ -6,4 +6,6 @@ mysql -u root -p base < script.sql
 
 pour importer un fichier txt dans la table
 mysqlimport -u LOGIN -p -d -L --fields-terminated-by=, BASE MATABLE.txt 
- attention le fichier txt doit avopir le meme nom que la table 
+ attention le fichier txt doit avopir le meme nom que la table
+ 
+ le site est hébergé ici : [185.13.37.145/geoffrey/](185.13.37.145/geoffrey/) 
