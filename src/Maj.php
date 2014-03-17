@@ -14,6 +14,7 @@
 				<option>Iut</option>
 				<option>Manifestation</option>
 				<option>Participe</option>
+				<option>Contenu</option>
 				
 			</select>
 			

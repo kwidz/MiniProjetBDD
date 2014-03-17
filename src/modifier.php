@@ -26,6 +26,9 @@
 			case 'Participe':
 			Participe();
 			break;
+			case 'Contenu':
+			Contenu();
+			break;
 
 			default:
 			acceuil();
@@ -405,7 +408,76 @@ function Participe(){
 		Etudiant.noEtudiant = Participe.noEtudiant AND
 		Epreuve.numEpreuve = Participe.Epreuve
 		*/
+function Contenu(){
+	require_once("connection.php");
+			// $_GET['id'] est l'identifiant du tuple, $_GET['mode']est : supprimer, modifier
+			if (isset($_GET['numMan'])&&isset($_GET['mode'])&&isset($_GET['numEpreuve'])){
+				// partie suppression
+				if ($_GET['mode']=='supprimer') {
+					
+					// on exectute dirrectement la requette dans cette page 
+					$sql="DELETE from Contenu where numEpreuve=".$_GET['numEpreuve']."and numMan=".$_GET['numMan']."";
+					echo $sql;
+					$res=$mysqli->query($sql);
+					// si la requette retourne une erreur c'est que le champs n'est pas supprimable (Contrainte de Clé étrangère)
+					if (!($res)){
+						?><h4>erreur le champ est sous contrainte !</h4><?php
+					}
+					// Partie Modification
+				}elseif ($_GET['mode']=='modifier') {
+					// On prévient l'utilisateur que nous somme en mode de modification
+					echo("<h4>mode de modification</h4>");
+					// on recupere l'Intitule du tuble pour faire un affichage interactif
+					$sql="SELECT e.intitule, m.nomMan from Epreuve e, Manifestation m where numEpreuve=".$_GET['numEpreuve']." and numMan=".$_GET['numMan']."";
+					
+					$res=$mysqli->query($sql);
+					$row = $res->fetch_array();
+					// On affiche un formulaire de modification sur la même page 
+					// ce formulaire renvoie en POST les nouvelles valeurs du tuple a la page appliquerModifs.php
+					// avec comme variables d'url la table et l'id du tuple a modifier 
+					echo('<form method="post" action="appliquerModif.php?table=Epreuve&numEpreuve='.$_GET['numEpreuve']."&numMan=".$_GET['numMan'].'">');?>
+					Entrez un nouvel intitullé pour <?php echo($row['intitule'])?> : <input type="text" name="intitule"><br/>
+					Entrez un nouvel intitullé pour <?php echo($row['nomMan'])?> : <input type="text" name="nomMan">
+					<input type='submit'>
+					</form><?php
 
+				}
+				else{
+					echo ("<h4>erreur mode</h4>");
+				}
+				
+			}
+			// affichage des parties utiles de la table pour que l'utilisateur puisse modifier, supprimer ou ajouter des tuples
+			$sql="SELECT c.*, m.nomMan, e.intitule from Contenu c, Manifestation m, Epreuve e where c.numMan=m.numMan and e.numEpreuve=c.numEpreuve";
+			$res=$mysqli->query($sql);
+			?><table>
+			<caption>Contenu</caption>
+			<thead>
+				<tr>
+					<th>Manifestation</th>
+					<th>Epreuve</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Manifestation</th>
+					<th>Epreuve</th>
+				</tr>
+			</tfoot>
+
+			<?php
+			while (NULL != ($row = $res->fetch_array())) {
+				echo '<tr><td>'.$row['nomMan'].'</td><td>'.$row['intitule'].'</td><td><a id="modifier" href="modifier.php?table=Contenu&mode=supprimer&numEpreuve='.$row['numEpreuve'].'&numMan='.$row['numMan'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Contenu&mode=modifier&numEpreuve='.$row['numEpreuve'].'&numMan='.$row['numMan'].'">Modifier</td></tr>';
+			}
+			echo('<form method="post" action="ajouter.php?table=Epreuve"><tr>');?>
+			<td><input type="text" name="intitule" value="nouvelle Epreuve" onclick="this.value=''"></td>
+			<td><input type='submit' value="ajouter Epreuve"></td>
+		</form>
+	</table>
+</br>
+<a href="Maj.php">Retour</a>
+<?php
+}
 ?>
 </section>
 </body>
