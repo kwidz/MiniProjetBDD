@@ -79,8 +79,8 @@ else {
 
 function Participe(){
 	require_once('connection.php');
-	if(!($_POST['nom']=='')&&!($_POST['age']=='')&&!($_POST['sexe']=='')&&!($_POST['Iut']=='')){
-	$sql="UPDATE Etudiant SET nom='".$_POST['nom']."',age='".$_POST['age']."', sexe='".$_POST['sexe']."' , noIut='".$_POST['Iut']."' WHERE CONCAT(numMan, numEpreuve, noEtudiant) ='".$_GET['id']."'";
+	if(!($_POST['Etudiant']=='')&&!($_POST['Manifestation']=='')&&!($_POST['Epreuve']=='')&&!($_POST['resultat']=='')){
+	$sql="UPDATE Participe SET numMan='".$_POST['Manifestation']."',numEpreuve='".$_POST['Epreuve']."', noEtudiant='".$_POST['Etudiant']."' , resultat='".$_POST['resultat']."' WHERE numMan=".$_GET['numMan']." and numEpreuve=".$_GET['numEpreuve']." and noEtudiant=".$_GET['noEtudiant']."";
 	
 	$res=$mysqli->query($sql);
 	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Participe>Retour</a>";
