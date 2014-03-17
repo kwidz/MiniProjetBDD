@@ -18,6 +18,9 @@ switch ($_GET['table']) {
 	case 'Manifestation':
 		Manifestation();
 		break;
+	case 'Participe':
+		Participe();
+		break;
 	default:
 		echo "<h4>aucune table selectionnée ou table erronée !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -74,6 +77,21 @@ else {
 	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Manifestation>Retour</a>";
 }
 }
+
+
+function Participe(){
+	require_once('connection.php');
+	if(!($_POST['Etudiant']=='')&&!($_POST['Epreuve']=='')&&!($_POST['Manifestation']=='')&&!($_POST['resultat']=='')){
+	$sql="INSERT into Participe(numMan, numEpreuve, noEtudiant, resultat) values('".$_POST['Manifestation']."','".$_POST['Epreuve']."','".$_POST['Manifestation']."','".$_POST['resultat']."')";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Participe>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Participe>Retour</a>";
+}
+}
+
 
 ?>
 </section>
