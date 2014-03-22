@@ -21,6 +21,9 @@ switch ($_GET['table']) {
 	case 'Participe':
 		Participe();
 		break;
+	case 'Contenu':
+		Contenu();
+		break;
 	default:
 		echo "<h4>aucune table selectionnée ou table erronée !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -82,7 +85,7 @@ else {
 function Participe(){
 	require_once('connection.php');
 	if(!($_POST['Etudiant']=='')&&!($_POST['Epreuve']=='')&&!($_POST['Manifestation']=='')&&!($_POST['resultat']=='')){
-	$sql="INSERT into Participe(numMan, numEpreuve, noEtudiant, resultat) values('".$_POST['Manifestation']."','".$_POST['Epreuve']."','".$_POST['Manifestation']."','".$_POST['resultat']."')";
+	$sql="INSERT into Participe(numMan, numEpreuve, noEtudiant, resultat) values('".$_POST['Manifestation']."','".$_POST['Epreuve']."','".$_POST['Etudiant']."','".$_POST['resultat']."')";
 	
 	$res=$mysqli->query($sql);
 	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Participe>Retour</a>";
@@ -92,6 +95,18 @@ else {
 }
 }
 
+function Contenu(){
+	require_once('connection.php');
+	if(!($_POST['Epreuve']=='')&&!($_POST['Manifestation']=='')){
+	$sql="INSERT into Contenu(numMan, numEpreuve) values('".$_POST['Manifestation']."','".$_POST['Epreuve']."')";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Contenu>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Contenu>Retour</a>";
+}
+}
 
 ?>
 </section>

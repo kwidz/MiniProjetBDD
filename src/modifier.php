@@ -494,7 +494,7 @@ function Contenu(){
 					
 					// on exectute dirrectement la requette dans cette page 
 					$sql="DELETE from Contenu where numEpreuve=".$_GET['numEpreuve']."and numMan=".$_GET['numMan']."";
-					echo $sql;
+				
 					$res=$mysqli->query($sql);
 					// si la requette retourne une erreur c'est que le champs n'est pas supprimable (Contrainte de Clé étrangère)
 					if (!($res)){
@@ -512,9 +512,35 @@ function Contenu(){
 					// On affiche un formulaire de modification sur la même page 
 					// ce formulaire renvoie en POST les nouvelles valeurs du tuple a la page appliquerModifs.php
 					// avec comme variables d'url la table et l'id du tuple a modifier 
-					echo('<form method="post" action="appliquerModif.php?table=Epreuve&numEpreuve='.$_GET['numEpreuve']."&numMan=".$_GET['numMan'].'">');?>
-					Entrez un nouvel intitullé pour <?php echo($row['intitule'])?> : <input type="text" name="intitule"><br/>
-					Entrez un nouvel intitullé pour <?php echo($row['nomMan'])?> : <input type="text" name="nomMan">
+					echo('<form method="post" action="appliquerModif.php?table=Contenu&numEpreuve='.$_GET['numEpreuve']."&numMan=".$_GET['numMan'].'">');?>
+
+					<?php
+					$sql2="SELECT numMan, nomMan from Manifestation ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					Choisissez une nouvel Manifestation que <?php echo($row['nomMan'])?> : 
+					<select name="Manifestation">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["numMan"])?>"><?php echo($row2["nomMan"])?></option><?php 
+						} ?>
+
+					</select><br/>
+					<?php
+					$sql2="SELECT numEpreuve, intitule from Epreuve ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					Choisissez une nouvel Epreuve que <?php echo($row['intitule'])?> : 
+					<select name="Epreuve">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["numEpreuve"])?>"><?php echo($row2["intitule"])?></option><?php 
+						} ?>
+
+					</select><br/>
+					
 					<input type='submit'>
 					</form><?php
 
@@ -546,9 +572,30 @@ function Contenu(){
 			while (NULL != ($row = $res->fetch_array())) {
 				echo '<tr><td>'.$row['nomMan'].'</td><td>'.$row['intitule'].'</td><td><a id="modifier" href="modifier.php?table=Contenu&mode=supprimer&numEpreuve='.$row['numEpreuve'].'&numMan='.$row['numMan'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Contenu&mode=modifier&numEpreuve='.$row['numEpreuve'].'&numMan='.$row['numMan'].'">Modifier</td></tr>';
 			}
-			echo('<form method="post" action="ajouter.php?table=Epreuve"><tr>');?>
-			<td><input type="text" name="intitule" value="nouvelle Epreuve" onclick="this.value=''"></td>
-			<td><input type='submit' value="ajouter Epreuve"></td>
+			echo('<form method="post" action="ajouter.php?table=Contenu"><tr>');?>
+				<?php
+					$sql2="SELECT numMan, nomMan from Manifestation  ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					<td><select name="Manifestation">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["numMan"])?>"><?php echo($row2["nomMan"])?></option><?php 
+						} ?>
+
+					</select></td>
+					<?php
+					$sql2="SELECT numEpreuve, intitule from Epreuve   ";
+					$res2=$mysqli->query($sql2);
+					$row2 = $res2->fetch_array();
+					?>
+					<td><select name="Epreuve">
+						<?php 
+						while (NULL != ($row2 = $res2->fetch_array())) { ?>
+							<option value="<?php echo($row2["numEpreuve"])?>"><?php echo($row2["intitule"])?></option><?php 
+						} ?>
+			<td><input type='submit' value="ajouter Contenu"></td>
 		</form>
 	</table>
 </br>

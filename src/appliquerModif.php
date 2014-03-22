@@ -20,6 +20,9 @@ switch ($_GET['table']) {
 	case 'Participe':
 		Participe();
 		break;
+	case 'Contenu':
+		Contenu();
+		break;
 	default:
 		echo "<h4>erreur champs !</h4><br/><a href=modifier.php?table=Epreuve>Retour</a>";
 		break;
@@ -90,6 +93,18 @@ else {
 }
 }
 
+function Contenu(){
+	require_once('connection.php');
+	if(!($_POST['Manifestation']=='')&&!($_POST['Epreuve']=='')){
+	$sql="UPDATE Contenu SET numMan='".$_POST['Manifestation']."',numEpreuve='".$_POST['Epreuve']."' WHERE numMan=".$_GET['numMan']." and numEpreuve=".$_GET['numEpreuve']."";
+	
+	$res=$mysqli->query($sql);
+	echo "<h4>La modification a été bien prise en compte !</h4><br/><a href=modifier.php?table=Contenu>Retour</a>";
+}
+else {
+	echo "<h4>Le champ est vide !</h4><br/><a href=modifier.php?table=Contenu>Retour</a>";
+}
+}
 ?>
 </section>
 
