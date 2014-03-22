@@ -370,7 +370,7 @@ function Participe(){
 		
 			// $_GET['id'] est l'identifiant du tuple, $_GET['mode']est : supprimer, modifier
 			if (isset($_GET['numMan'])&&isset($_GET['numEpreuve'])&&isset($_GET['noEtudiant'])&&isset($_GET['mode'])){
-				echo "coucou ".$_GET['mode'];
+				
 				if ($_GET['mode']=='supprimer') {
 					
 					// on exectute dirrectement la requette dans cette page 
@@ -397,41 +397,8 @@ function Participe(){
 					$res2=$mysqli->query($sql2);
 					$row2 = $res2->fetch_array();
 					?>
-					Choisissez un etudiant :
-					<select name="Etudiant">
-						<?php 
-						while (NULL != ($row2 = $res2->fetch_array())) { ?>
-							<option value="<?php echo($row2["noEtudiant"])?>"><?php echo($row2["nom"])?></option><?php 
-						} ?>
-
-					</select>
-					<?php
-					$sql2="SELECT numMan, nomMan from Manifestation ";
-					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
-					?>
-					Choisissez une Manifestation:
-					<select name="Manifestation">
-						<?php 
-						while (NULL != ($row2 = $res2->fetch_array())) { ?>
-							<option value="<?php echo($row2["numMan"])?>"><?php echo($row2["nomMan"])?></option><?php 
-						} ?>
-
-					</select>
-					<?php
-					$sql2="SELECT numEpreuve, intitule from Epreuve ";
-					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
-					?>
-					Choisissez une Manifestation:
-					<select name="Epreuve">
-						<?php 
-						while (NULL != ($row2 = $res2->fetch_array())) { ?>
-							<option value="<?php echo($row2["numEpreuve"])?>"><?php echo($row2["intitule"])?></option><?php 
-						} ?>
-
-					</select>
-					Entrez un nouveau resultat : <input type="text" name="resultat">
+				
+					Entrez un nouveau resultat pour cet Etudiant: <input type="text" name="resultat">
 					<input type='submit'>
 					</form><?php
 
@@ -463,8 +430,6 @@ function Participe(){
 				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['nomMan'].'</td><td>'.$row['intitule'].'</td><td>'.$row['resultat'].'</td><td><a id="modifier" href="modifier.php?table=Participe&mode=supprimer&numMan='.$row['numMan'].'&numEpreuve='.$row['numEpreuve'].'&noEtudiant='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Participe&mode=modifier&numMan='.$row['numMan'].'&numEpreuve='.$row['numEpreuve'].'&noEtudiant='.$row['noEtudiant'].'">Modifier</td></tr>';
 			}
 			echo('<form method="post" action="ajouter.php?table=Participe"><tr>');?>
-			
-			<td><input type="number" name="resultat" value="resultat" onclick="this.value=''"></td>
 			<?php
 					$sql2="SELECT noEtudiant, nom from Etudiant ";
 					$res2=$mysqli->query($sql2);
@@ -477,7 +442,9 @@ function Participe(){
 						} ?>
 
 					</select></td>
-				<?php
+				
+
+			<?php
 					$sql2="SELECT numMan, nomMan from Manifestation  ";
 					$res2=$mysqli->query($sql2);
 					$row2 = $res2->fetch_array();
@@ -489,7 +456,7 @@ function Participe(){
 						} ?>
 
 					</select></td>
-				<?php
+			<?php
 					$sql2="SELECT numEpreuve, intitule from Epreuve   ";
 					$res2=$mysqli->query($sql2);
 					$row2 = $res2->fetch_array();
@@ -501,6 +468,9 @@ function Participe(){
 						} ?>
 
 					</select></td>
+			<td><input type="number" name="resultat" value="resultat" onclick="this.value=''"></td>
+			
+				
 			<td><input type='submit' value="ajouter une participation"></td>
 		</form>
 	</table>
