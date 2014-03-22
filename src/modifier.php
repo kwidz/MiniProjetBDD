@@ -370,7 +370,7 @@ function Participe(){
 		
 			// $_GET['id'] est l'identifiant du tuple, $_GET['mode']est : supprimer, modifier
 			if (isset($_GET['numMan'])&&isset($_GET['numEpreuve'])&&isset($_GET['noEtudiant'])&&isset($_GET['mode'])){
-				// partie suppression
+				echo "coucou ".$_GET['mode'];
 				if ($_GET['mode']=='supprimer') {
 					
 					// on exectute dirrectement la requette dans cette page 
@@ -460,7 +460,7 @@ function Participe(){
 
 			<?php
 			while (NULL != ($row = $res->fetch_array())) {
-				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['nomMan'].'</td><td>'.$row['intitule'].'</td><td>'.$row['resultat'].'</td><td><a id="modifier" href="modifier.php?table=Participe&mode=supprimer&numMan='.$row['numMan'].'&numEpreuve='.$row['numEpreuve'].'&noEtudiant='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Participe&mode=modifier&numMan='.$row['numMan'].'&numEpreuve='.$row['numEpreuve'].'&numEtudiant='.$row['noEtudiant'].'">Modifier</td></tr>';
+				echo '<tr><td>'.$row['nom'].'</td><td>'.$row['nomMan'].'</td><td>'.$row['intitule'].'</td><td>'.$row['resultat'].'</td><td><a id="modifier" href="modifier.php?table=Participe&mode=supprimer&numMan='.$row['numMan'].'&numEpreuve='.$row['numEpreuve'].'&noEtudiant='.$row['noEtudiant'].'">Supprimer</td><td><a id="modifier" href="modifier.php?table=Participe&mode=modifier&numMan='.$row['numMan'].'&numEpreuve='.$row['numEpreuve'].'&noEtudiant='.$row['noEtudiant'].'">Modifier</td></tr>';
 			}
 			echo('<form method="post" action="ajouter.php?table=Participe"><tr>');?>
 			
