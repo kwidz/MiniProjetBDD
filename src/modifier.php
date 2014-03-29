@@ -136,7 +136,7 @@
 					<?php
 					$sql2="SELECT noIut, nomIut from Iut ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					Choisissez un nouvel iut pour <?php echo($row['nom'])?> : 
 					<select name="Iut">
@@ -183,7 +183,7 @@
 			<?php
 					$sql2="SELECT noIut, nomIut from Iut ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					 
 					<td><select name="Iut">
@@ -302,7 +302,7 @@
 					<?php
 					$sql2="SELECT noIut, nomIut from Iut ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					Choisissez un nouvel iut pour <?php echo($row['nomMan'])?> : 
 					<select name="Iut">
@@ -347,7 +347,7 @@
 			<?php
 					$sql2="SELECT noIut, nomIut from Iut ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+				
 					?>
 					<td><select name="Iut">
 						<?php 
@@ -447,7 +447,7 @@ function Participe(){
 			<?php
 					$sql2="SELECT numMan, nomMan from Manifestation  ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					<td><select name="Manifestation">
 						<?php 
@@ -459,7 +459,7 @@ function Participe(){
 			<?php
 					$sql2="SELECT numEpreuve, intitule from Epreuve   ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					<td><select name="Epreuve">
 						<?php 
@@ -517,7 +517,7 @@ function Contenu(){
 					<?php
 					$sql2="SELECT numMan, nomMan from Manifestation ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					Choisissez une nouvel Manifestation que <?php echo($row['nomMan'])?> : 
 					<select name="Manifestation">
@@ -530,7 +530,7 @@ function Contenu(){
 					<?php
 					$sql2="SELECT numEpreuve, intitule from Epreuve ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					Choisissez une nouvel Epreuve que <?php echo($row['intitule'])?> : 
 					<select name="Epreuve">
@@ -576,7 +576,7 @@ function Contenu(){
 				<?php
 					$sql2="SELECT numMan, nomMan from Manifestation  ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					<td><select name="Manifestation">
 						<?php 
@@ -588,7 +588,7 @@ function Contenu(){
 					<?php
 					$sql2="SELECT numEpreuve, intitule from Epreuve   ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 					<td><select name="Epreuve">
 						<?php 
