@@ -395,7 +395,7 @@ function Participe(){
 					<?php
 					$sql2="SELECT noEtudiant, nom from Etudiant ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+					
 					?>
 				
 					Entrez un nouveau resultat pour cet Etudiant: <input type="text" name="resultat">
@@ -433,7 +433,7 @@ function Participe(){
 			<?php
 					$sql2="SELECT noEtudiant, nom from Etudiant ";
 					$res2=$mysqli->query($sql2);
-					$row2 = $res2->fetch_array();
+				
 					?>
 					<td><select name="Etudiant">
 						<?php 
