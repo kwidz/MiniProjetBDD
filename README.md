@@ -12,11 +12,11 @@ Cabrol Morgane et Glangine Geoffrey.
 -Permet d'afficher des requettes que nous avons étudiés en Traveaux dirigés 
 -Permet de modifier les tables d'une gestion de manifestations sportives.
 
-**Hebergement et production: **
+**Hebergement et production :**
 
 le site est hébergé [ici](http://kwidz404.esy.es/Mini_projet/index.php) 
 
-**Mémo commandes mysql**
+**Mémo commandes mysql :**
 
 *pour exporter : *
 
