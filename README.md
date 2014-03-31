@@ -16,6 +16,10 @@ Cabrol Morgane et Glangine Geoffrey.
 
 le site est hébergé [ici](http://kwidz404.esy.es/Mini_projet/index.php) 
 
+**Post-Scriptum :**
+
+Nous avons rencontré un probleme avec notre serveur dédié j'ai donc du utiliser en dernière minute un hebergeur gratuit donc l'encodage de la base de donnée n'est pas en UTF8.
+
 **Mémo commandes mysql :**
 
 *pour exporter :*
@@ -31,9 +35,7 @@ le site est hébergé [ici](http://kwidz404.esy.es/Mini_projet/index.php)
     mysqlimport -u LOGIN -p -d -L --fields-terminated-by=, BASE MATABLE.txt 
 attention le fichier txt doit avopir le meme nom que la table
 
-**Post-Scriptum : **
 
-Nous avons rencontré un probleme avec notre serveur dédié j'ai donc du utiliser en dernière minute un hebergeur gratuit donc l'encodage de la base de donnée n'est pas en UTF8.
 
  
  
