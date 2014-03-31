@@ -1,10 +1,11 @@
 Mini Projet de Base de donnée 
 =============================
 
-Réalisé par : 
--------------
+**Réalisé par :**
 
 Cabrol Morgane et Glangine Geoffrey.
+
+
 
 pour exporter : 
 myqsqldump -h serveur -u LOGIN -p --opt base > base.sql
