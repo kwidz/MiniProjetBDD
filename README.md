@@ -24,11 +24,11 @@ myqsqldump -h serveur -u LOGIN -p --opt base > base.sql
 
 *pour importer le code :*
 
-mysql -u root -p base < script.sql
+    mysql -u root -p base < script.sql
 
 *pour importer un fichier txt dans la table *
 
-mysqlimport -u LOGIN -p -d -L --fields-terminated-by=, BASE MATABLE.txt 
+    mysqlimport -u LOGIN -p -d -L --fields-terminated-by=, BASE MATABLE.txt 
 attention le fichier txt doit avopir le meme nom que la table
 
 **Post-Scriptum : **
