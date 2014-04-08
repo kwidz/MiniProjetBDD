@@ -14,7 +14,7 @@ Cabrol Morgane et Glangine Geoffrey.
 
 **Hebergement et production :**
 
-le site est hébergé [ici](http://kwidz404.esy.es/Mini_projet/index.php) 
+[le site est hébergé ici](http://kwidz404.esy.es/Mini_projet/index.php) 
 
 **Post-Scriptum :**
 
